@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="assets/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   </head>
   <body>
     <aside></aside>
@@ -19,13 +20,17 @@
         <div class="container-input">
           <label for="email">E-mail</label>
           <input id="email" type="text" />
+          <p class="caption-warning" id="email-warning">*E-mail obrigatório</p>
         </div>
         <div class="container-input">
           <label for="password">Password</label>
-          <input id="password" type="text" />
+          <input id="password" type="password" />
+          <p class="caption-warning" id="password-warning">
+            *Senha obrigatória
+          </p>
         </div>
         <button class="forgot-password">Esqueci minha senha</button>
-        <button class="btn-enter">Enter</button>
+        <button class="btn-enter" id="btn-enter">Enter</button>
         <div class="container-separator">
           <div class="separator"></div>
           <div class="text-separator">Ou entre com</div>
@@ -49,5 +54,28 @@
         <button class="signup-button">Crie uma conta</button>
       </section>
     </main>
+
+    <script>
+      /* 
+      $('#btn-enter') same as document.getElementsById('btn-enter') 
+      */
+      $("#btn-enter").click(function () {
+        if ($("#email").val().trim() === "") {
+          // alert("E-mail obrigatório!");
+          $("#email-warning").show();
+        }
+
+        if ($("#password").val().trim() === "") {
+          // alert("E-mail obrigatório!");
+          $("#password-warning").show();
+        }
+      });
+      $("#email").focus(function () {
+        $("#email-warning").hide();
+      });
+      $("#password").focus(function () {
+        $("#password-warning").hide();
+      });
+    </script>
   </body>
 </html>
